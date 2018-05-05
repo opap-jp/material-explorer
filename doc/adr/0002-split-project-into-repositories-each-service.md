@@ -26,5 +26,7 @@ opap-jp/material-explorer をサービスごとのリポジトリに分割しま
 - 軽量アーキテクチャ決定記録を含む各ドキュメントは、それぞれのサービスのリポジトリに移動されません。
   すべてのドキュメントが opap-jp/material-explorer で一元的に管理されます。（ルートディレクトリの `README.md` を除く。）
 - CI で統合テストや UI テストを行なうリポジトリを作れるかも知れません。
+- 各サービスごとの変更は、GitHub にそれを反映しなければ、Docker Compose での起動において反映されません。
+  そのため、リモートリポジトリを更新することなく複数のサービスを同時に編集するような開発は困難になるでしょう。
 
 https://github.com/opap-jp/material-explorer/issues/13

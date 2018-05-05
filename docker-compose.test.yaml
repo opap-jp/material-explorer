@@ -11,6 +11,9 @@ services:
       - "8080:8080"
     volumes:
       - ./temp/log/material-explorer:/var/log/material-explorer
+      - ./conf/config.test.yaml:/root/material-explorer/config.test.yaml
+      - ./conf/manifest.yaml:/root/material-explorer/manifest.yaml
+      - ./conf/repositories.yaml:/root/material-explorer/repositories.yaml
   # フロントエンド ウェブサーバー（開発用）
   web:
     build:
