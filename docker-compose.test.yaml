@@ -1,23 +1,24 @@
 # テスト用 Docker 構成
 version: "2"
 services:
-  # フロントエンド ウェブサーバー（開発用）
-  web:
-    build:
-      context: web
-      args:
-        service_host: "http://localhost:8080"
-    ports:
-      - 80:80
   # REST サーバー（開発用）
   rest:
     command: "java -jar material-explorer.jar server config.test.yaml"
-    build: rest
+    build:
+      # https://docs.docker.com/engine/reference/commandline/build/#extended-description
+      context: https://github.com/opap-jp/material-explorer-rest.git#develop
     ports:
       - "8080:8080"
     volumes:
       - ./temp/log/material-explorer:/var/log/material-explorer
-      - ./temp/repositories:/tmp/material-explorer/temp/repositories
+  # フロントエンド ウェブサーバー（開発用）
+  web:
+    build:
+      context: https://github.com/opap-jp/material-explorer-web.git#develop
+      args:
+        service_host: "http://localhost:8080"
+    ports:
+      - 80:80
   # データベース
   db:
     image: mongo:3.4.9
@@ -28,6 +29,6 @@ services:
   # ImageMagick
   im:
     build:
-      context: im
+      context: https://github.com/opap-jp/material-explorer-im.git#develop
 volumes:
   data-volume:

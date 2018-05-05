@@ -12,7 +12,7 @@ services:
   # ImageMagick
   im:
     build:
-      context: im
+      context: https://github.com/opap-jp/material-explorer-im.git#develop
     ports:
       - 9090:9090
 volumes:
