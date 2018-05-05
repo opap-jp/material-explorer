@@ -3,12 +3,13 @@ version: "2"
 services:
   # REST サーバー（開発用）
   rest:
-    command: "java -jar material-explorer.jar server config.test.yaml"
+    command: java -jar material-explorer.jar server config.test.yaml
     build:
       # https://docs.docker.com/engine/reference/commandline/build/#extended-description
       context: https://github.com/opap-jp/material-explorer-rest.git#develop
     ports:
-      - "8080:8080"
+      - 8080:8080
+      - 8081:8081
     volumes:
       - ./temp/log/material-explorer:/var/log/material-explorer
       - ./conf/config.test.yaml:/root/material-explorer/config.test.yaml
