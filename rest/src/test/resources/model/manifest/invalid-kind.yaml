@@ -1,9 +1,0 @@
-tag_groups:
-    -
-      tags:
-        - names: [祝園アカネ]
-    -
-      kind: foo
-      tags:
-        - names: [山家宏佳]
-selectors: []

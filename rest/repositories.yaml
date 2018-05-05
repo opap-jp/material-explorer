@@ -1,8 +1,0 @@
-repositories:
-  -
-    id: mock-for-material-explorer
-    title: "素材検索システム用モック"
-    protocol: gitlab
-    host: https://gitlab.com
-    namespace: kosys
-    name: mock-for-material-explorer
