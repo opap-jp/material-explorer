@@ -12,15 +12,14 @@
   素材検索システムの Docker 構成とドキュメントを管理するリポジトリです。
 1. [**opap-jp/material-explorer-rest**](https://github.com/opap-jp/material-explorer-rest):  
   [![Build](https://travis-ci.org/opap-jp/material-explorer-rest.svg)](https://travis-ci.org/opap-jp/material-explorer-rest)
-  ![Coverage](https://codecov.io/gh/opap-jp/material-explorer-rest/branch/develop/graph/badge.svg)  
+  [![Coverage](https://codecov.io/gh/opap-jp/material-explorer-rest/branch/develop/graph/badge.svg)](https://codecov.io/gh/opap-jp/material-explorer-rest)    
   素材検索システムの REST サービスです。
 1. [**opap-jp/material-explorer-web**](https://github.com/opap-jp/material-explorer-web):  
   [![Build](https://travis-ci.org/opap-jp/material-explorer-web.svg)](https://travis-ci.org/opap-jp/material-explorer-web)
   ![Coverage](https://img.shields.io/badge/coverage-0%25-lightgrey.svg)  
   クライアントに対して静的なファイルを公開するサービスです。
 1. [**opap-jp/material-explorer-im**](https://github.com/opap-jp/material-explorer-im):  
-  [![Build](https://travis-ci.org/opap-jp/material-explorer-im.svg)](https://travis-ci.org/opap-jp/material-explorer-im)
-  ![Coverage](https://img.shields.io/badge/coverage-0%25-lightgrey.svg)  
+  [![Coverage](https://codecov.io/gh/opap-jp/material-explorer-im/branch/develop/graph/badge.svg)](https://codecov.io/gh/opap-jp/material-explorer-im)  
   さまざまな形式の画像のリサイズを行なう REST サービスです。
 
 ## ドキュメント
