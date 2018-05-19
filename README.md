@@ -19,6 +19,7 @@
   ![Coverage](https://img.shields.io/badge/coverage-0%25-lightgrey.svg)  
   クライアントに対して静的なファイルを公開するサービスです。
 1. [**opap-jp/material-explorer-im**](https://github.com/opap-jp/material-explorer-im):  
+  [![Build Status](https://travis-ci.org/opap-jp/material-explorer-im.svg)](https://travis-ci.org/opap-jp/material-explorer-im)
   [![Coverage](https://codecov.io/gh/opap-jp/material-explorer-im/branch/develop/graph/badge.svg)](https://codecov.io/gh/opap-jp/material-explorer-im)  
   さまざまな形式の画像のリサイズを行なう REST サービスです。
 
