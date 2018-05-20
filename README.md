@@ -8,8 +8,7 @@
 
 1. [**opap-jp/material-explorer**](https://github.com/opap-jp/material-explorer):  
   [![Build](https://travis-ci.org/opap-jp/material-explorer.svg)](https://travis-ci.org/opap-jp/material-explorer)
-  ![Coverage](https://img.shields.io/badge/coverage-N%2FA-lightgrey.svg)  
-  素材検索システムの Docker 構成とドキュメントを管理するリポジトリです。
+  素材検索システムの Docker 構成とドキュメントを管理するリポジトリです。コードはありません。
 1. [**opap-jp/material-explorer-rest**](https://github.com/opap-jp/material-explorer-rest):  
   [![Build](https://travis-ci.org/opap-jp/material-explorer-rest.svg)](https://travis-ci.org/opap-jp/material-explorer-rest)
   [![Coverage](https://codecov.io/gh/opap-jp/material-explorer-rest/branch/develop/graph/badge.svg)](https://codecov.io/gh/opap-jp/material-explorer-rest)    
