@@ -3,3 +3,9 @@ services:
   - docker
 script:
   - docker-compose -f ./docker-compose.test.yaml build
+cache:
+  directories:
+  - $CACHE_DIR
+env:
+  global:
+    - DOCKER_CACHE=$HOME/.cache/docker
