@@ -1,6 +1,6 @@
-FROM ubuntu:17.10
+FROM ubuntu:20.04
 
-MAINTAINER OPAP-JP
+LABEL maintainer OPAP-JP
 
 # ローケルを設定します
 ENV LANG en_US.UTF-8
@@ -34,16 +34,10 @@ RUN sbt clean && sbt -Dpackaging.type=jar update
 # ビルド
 COPY ./project ./project
 COPY ./src ./src
-# RUN sbt -Dpackaging.type=jar -Dfile.encoding=UTF-8 assembly
 RUN sbt -Dpackaging.type=jar assembly
 RUN mv target/material-explorer.jar /root/material-explorer/
 
 WORKDIR /root/material-explorer/
-
-# TODO: アプリケーション設定ファイルは、ARG で指定する
-COPY ./config.test.yaml .
-COPY ./manifest.yaml .
-COPY ./repositories.yaml .
 
 # ポート公開
 EXPOSE 8080

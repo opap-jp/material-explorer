@@ -12,7 +12,7 @@ import jp.opap.material.model.Components.{IntermediateComponent, IntermediateDir
 import jp.opap.material.model.MetaComponent.{MetaDirectory, MetaFile}
 import jp.opap.material.model.RepositoryConfig.RepositoryInfo
 import jp.opap.material.model.Warning.{ComponentWarning, GlobalWarning}
-import jp.opap.material.model.{ComponentEntry, Manifest, MetaComponent, Metadata, RepositoryConfig}
+import jp.opap.material.model.{ComponentEntry, Manifest, MetaComponent, Metadata, RepositoryConfig, Warning}
 import org.slf4j.{Logger, LoggerFactory}
 
 class RepositoryCollectionFacade(
@@ -171,7 +171,7 @@ class RepositoryCollectionFacade(
       *
       * @param tree コンポーネントの木。変換の対象です。
       * @param parentId 変換の対象のコンポーネントの親コンポーネントの ID。木のルートに関する呼び出しのときのみ None です。
-      * @return コンポーネントのリスト。ファイルとフォルダです。
+      * @return コンポーネントのリスト。ファイルとディレクトリです。
       */
     def list(tree: IntermediateComponent, parentId: Option[UUID]):  List[ComponentEntry]  = {
       tree match {
@@ -208,7 +208,7 @@ class RepositoryCollectionFacade(
           } catch {
             case e: IOException =>
               val warning = ComponentWarning(UUID.randomUUID(), s"${loader.info.id} - ${file.path} のサムネイルの生成に失敗しました。",
-                Option(e.getMessage), file.repositoryId, file.path)
+                Option(e.getMessage), file.id)
               // TODO: 警告の登録（現在はログ出力）
               LOG.info(warning.message)
               e.printStackTrace()
@@ -223,5 +223,5 @@ class RepositoryCollectionFacade(
 object RepositoryCollectionFacade {
   val WARNING_NO_SUCH_LOADER: String = "%1$s - このリポジトリの取得方式に対応していません。"
 
-  case class Context(manifest: (Seq[GlobalWarning], Manifest), repositoryConfig: (Seq[GlobalWarning], RepositoryConfig))
+  case class Context(manifest: (Seq[Warning], Manifest), repositoryConfig: (Seq[Warning], RepositoryConfig))
 }
