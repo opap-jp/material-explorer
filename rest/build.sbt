@@ -1,7 +1,9 @@
+val SCALA_VERSION = "2.12.13"
+
 name := "material-explorer"
 organization := "jp.opap"
 version := "0.0.1"
-scalaVersion := "2.12.4"
+scalaVersion := SCALA_VERSION
 javacOptions ++= Seq("-encoding", "UTF-8")
 
 val workaround: Unit = {
@@ -9,7 +11,7 @@ val workaround: Unit = {
   ()
 }
 libraryDependencies ++= Seq(
-  "org.scala-lang" % "scala-reflect" % "2.12.4",
+  "org.scala-lang" % "scala-reflect" % SCALA_VERSION,
   "org.gitlab4j" % "gitlab4j-api" % "4.6.5" excludeAll(
     ExclusionRule(organization = "org.glassfish.jersey.inject"),
     ExclusionRule(organization = "org.glassfish.jersey.core"),
