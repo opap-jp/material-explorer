@@ -2,12 +2,15 @@ FROM python:3.4
 
 # パッケージのインストール
 RUN apt-get update \
-    && apt-get install -y imagemagick ghostscript \
-    && pip install Flask==0.10.1
+    && apt-get install -y imagemagick ghostscript
 
-WORKDIR /app
-COPY src /app
-COPY cmd.sh /
+RUN mkdir /usr/src/im
+WORKDIR /usr/src/im
+COPY requirements.txt .
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
-EXPOSE 9090
-CMD ["/cmd.sh"]
+COPY . .
+RUN chmod 755 cmd.sh test.sh
+
+CMD ./cmd.sh

@@ -1,0 +1,10 @@
+# im のユニットテストを実行します。
+version: "2"
+services:
+  im:
+    command: ./test.sh
+    build:
+      context: .
+    volumes:
+      - ./src:/usr/src/im/src
+      - ./test:/usr/src/im/test

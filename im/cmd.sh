@@ -1,2 +1,2 @@
 #!/bin/bash
-python im.py
+python src/im.py
