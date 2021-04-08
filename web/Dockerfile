@@ -1,6 +1,6 @@
 FROM nginx:1.13
 
-MAINTAINER OPAP-JP
+LABEL maintainer OPAP-JP
 
 # パッケージのインストール
 RUN apt-get update \
