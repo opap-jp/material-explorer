@@ -1,7 +1,7 @@
 # Scala
 /.idea
-/project
-/src
+/project/target
+/project/project
 /target
 !/target/material-explorer.jar
 /temp
