@@ -1,6 +1,7 @@
 # Scala
-.idea
-project/target
-project/project
-target
-temp
+/.idea
+/project
+/src
+/target
+!/target/material-explorer.jar
+/temp

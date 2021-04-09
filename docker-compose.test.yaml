@@ -6,19 +6,19 @@ services:
     command: java -jar material-explorer.jar server config.test.yaml
     build:
       # https://docs.docker.com/engine/reference/commandline/build/#extended-description
-      context: https://github.com/opap-jp/material-explorer-rest.git#develop
+      context: rest
     ports:
       - 8080:8080
       - 8081:8081
     volumes:
       - ./temp/log/material-explorer:/var/log/material-explorer
-      - ./conf/config.test.yaml:/root/material-explorer/config.test.yaml
-      - ./conf/manifest.yaml:/root/material-explorer/manifest.yaml
-      - ./conf/repositories.yaml:/root/material-explorer/repositories.yaml
+      - ./conf/config.test.yaml:/opt/material-explorer/config.test.yaml
+      - ./conf/manifest.yaml:/opt/material-explorer/manifest.yaml
+      - ./conf/repositories.yaml:/opt/material-explorer/repositories.yaml
   # フロントエンド ウェブサーバー（開発用）
   web:
     build:
-      context: https://github.com/opap-jp/material-explorer-web.git#develop
+      context: web
       args:
         service_host: "http://localhost:8080"
     ports:
@@ -33,6 +33,6 @@ services:
   # ImageMagick
   im:
     build:
-      context: https://github.com/opap-jp/material-explorer-im.git#develop
+      context: im
 volumes:
   data-volume:
