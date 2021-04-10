@@ -18,11 +18,11 @@ import io.circe.syntax._
 import jp.opap.material.MaterialExplorer.ServiceBundle
 import jp.opap.material.dao.{MongoComponentDao, MongoRepositoryDao, MongoThumbnailDao}
 import jp.opap.material.facade.RepositoryDataEventEmitter
-import jp.opap.material.resource.RootResource.CORS_SETTINGS
+import jp.opap.material.resource.AppResources.CORS_SETTINGS
 
 import scala.concurrent.ExecutionContext
 
-class RootResource(val services: ServiceBundle, val eventEmitter: RepositoryDataEventEmitter)
+class AppResources(val services: ServiceBundle, val eventEmitter: RepositoryDataEventEmitter)
   (implicit executionContext: ExecutionContext)
   extends /* SprayJsonSupport with */ FailFastCirceSupport {
 
@@ -81,7 +81,7 @@ class RootResource(val services: ServiceBundle, val eventEmitter: RepositoryData
   }
 }
 
-object RootResource {
+object AppResources {
   val CORS_SETTINGS: CorsSettings = CorsSettings.defaultSettings
     .withAllowedMethods(Seq(GET, POST, PUT, DELETE, OPTIONS).to)
 }
