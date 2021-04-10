@@ -61,19 +61,12 @@ class AppResources(val services: ServiceBundle, val eventEmitter: RepositoryData
       path("progress") {
         get {
           complete {
-            Source.actorRef[ServerSentEvent](
-              completionMatcher = {
-                // complete stream immediately if we send it Done
-                case Done => CompletionStrategy.immediately
-              },
-              failureMatcher = PartialFunction.empty,
-              bufferSize = 100,
-              overflowStrategy = OverflowStrategy.dropHead,
-            ).mapMaterializedValue(actor => {
-              // TODO: イベントの送信
-              actor ! ServerSentEvent("negative", "negative")
-              actor ! Done
-            })
+            Source.actorRef[ServerSentEvent](32, OverflowStrategy.dropHead)
+              .mapMaterializedValue(actor => {
+                // TODO: イベントの送信
+                actor ! ServerSentEvent("negative", "negative")
+                actor ! Done
+              })
           }
         }
       }

@@ -3,7 +3,6 @@ package jp.opap.material.facade
 import java.nio.file.Files
 
 import com.mongodb.client.MongoDatabase
-import jp.opap.material.AppConfiguration
 import jp.opap.material.MaterialExplorer.ServiceBundle
 import jp.opap.material.dao.{GridFsCacheDao, MongoComponentDao, MongoRepositoryDao, MongoThumbnailDao}
 import jp.opap.material.facade.MediaConverter.{ImageConverter, RestResize}
@@ -31,7 +30,7 @@ class RepositoryCollectionFacadeTest extends FunSpec {
 
       val context = RepositoryCollectionFacade.Context((Seq(), Manifest(Seq(), Seq())), (Seq(), RepositoryConfig(List())))
 
-      val sut = new RepositoryCollectionFacade(context, services, converters, factories, new AppConfiguration(), emitter)
+      val sut = new RepositoryCollectionFacade(context, services, converters, factories, emitter)
       sut.updateRepositories()
     }
   }

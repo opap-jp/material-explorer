@@ -3,7 +3,6 @@ package jp.opap.material.facade
 import java.util.UUID
 
 import com.google.common.io.ByteStreams
-import jp.opap.material.AppConfiguration
 import jp.opap.material.facade.GitLabRepositoryLoaderFactory.GitlabRepositoryInfo
 import jp.opap.material.facade.RepositoryLoader.{ChangedResult, RepositoryLoaderFactory}
 import jp.opap.material.model.ComponentEntry.FileEntry
@@ -16,7 +15,7 @@ import org.gitlab4j.api.models.TreeItem
 
 import scala.collection.JavaConverters._
 
-class GitLabRepositoryLoaderFactory(val config: AppConfiguration) extends RepositoryLoaderFactory {
+class GitLabRepositoryLoaderFactory() extends RepositoryLoaderFactory {
   override def attemptCreate(info: RepositoryInfo): Option[RepositoryLoader] = info match {
     case info: GitlabRepositoryInfo => Option(create(info))
     case _ => Option.empty

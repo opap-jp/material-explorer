@@ -3,7 +3,6 @@ package jp.opap.material.facade
 import java.io.IOException
 import java.util.UUID
 
-import jp.opap.material.AppConfiguration
 import jp.opap.material.MaterialExplorer.ServiceBundle
 import jp.opap.material.facade.RepositoryCollectionFacade.Context
 import jp.opap.material.facade.RepositoryLoader.RepositoryLoaderFactory
@@ -20,7 +19,6 @@ class RepositoryCollectionFacade(
   val services: ServiceBundle,
   val converters: Seq[MediaConverter],
   val loaderFactories: Seq[RepositoryLoaderFactory],
-  val configuration: AppConfiguration,
   val eventEmitter: RepositoryDataEventEmitter
 ) {
   val LOG: Logger = LoggerFactory.getLogger(classOf[RepositoryCollectionFacade])

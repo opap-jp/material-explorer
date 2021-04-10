@@ -41,6 +41,7 @@ libraryDependencies ++= Seq(
   "org.apache.httpcomponents" % "fluent-hc" % "4.5.3",
 
   "org.yaml" % "snakeyaml" % "1.19",
+  "com.google.guava" % "guava" % "30.1.1-jre",
 
   "org.scala-lang" % "scala-reflect" % SCALA_VERSION,
 )
