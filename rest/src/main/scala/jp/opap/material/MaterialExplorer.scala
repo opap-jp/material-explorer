@@ -63,7 +63,7 @@ object MaterialExplorer {
 
     val context = RepositoryCollectionFacade.Context(manifest, repositories)
     val converters =Seq(new ImageConverter(services.resize))
-    val loaders = Seq(new GitLabRepositoryLoaderFactory())
+    val loaders = Seq(new GitLabRepositoryLoaderFactory(requireValue("GITLAB_PERSONAL_ACCESS_TOKEN")))
 
     val facade = new RepositoryCollectionFacade(context, services, converters, loaders, eventEmitter)
 

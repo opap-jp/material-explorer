@@ -15,10 +15,7 @@ val workaround: Unit = {
 }
 
 libraryDependencies ++= Seq(
-  "org.gitlab4j" % "gitlab4j-api" % "4.6.5" excludeAll(
-    ExclusionRule(organization = "org.glassfish.jersey.inject"),
-    ExclusionRule(organization = "org.glassfish.jersey.core"),
-  ),
+  "org.gitlab4j" % "gitlab4j-api" % "4.15.7",
 
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-http-core" % akkaHttpVersion,
@@ -39,6 +36,8 @@ libraryDependencies ++= Seq(
 
   "org.apache.httpcomponents" % "httpmime" % "4.5.3",
   "org.apache.httpcomponents" % "fluent-hc" % "4.5.3",
+
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
 
   "org.yaml" % "snakeyaml" % "1.19",
   "com.google.guava" % "guava" % "30.1.1-jre",

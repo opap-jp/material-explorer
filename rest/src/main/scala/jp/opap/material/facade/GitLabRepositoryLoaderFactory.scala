@@ -15,7 +15,7 @@ import org.gitlab4j.api.models.TreeItem
 
 import scala.collection.JavaConverters._
 
-class GitLabRepositoryLoaderFactory() extends RepositoryLoaderFactory {
+class GitLabRepositoryLoaderFactory(personalAccessToken: String) extends RepositoryLoaderFactory {
   override def attemptCreate(info: RepositoryInfo): Option[RepositoryLoader] = info match {
     case info: GitlabRepositoryInfo => Option(create(info))
     case _ => Option.empty
@@ -24,7 +24,7 @@ class GitLabRepositoryLoaderFactory() extends RepositoryLoaderFactory {
   protected def create(repositoryInfo: GitlabRepositoryInfo): RepositoryLoader = new RepositoryLoader {
     override val info: GitlabRepositoryInfo = repositoryInfo
 
-    val gitLab = new GitLabApi(ApiVersion.V4, repositoryInfo.host, null: String)
+    val gitLab = new GitLabApi(ApiVersion.V4, repositoryInfo.host, personalAccessToken)
     var projectId: Int = _
 
     override def loadChangedFiles(repository: Option[Repository]): ChangedResult = {
