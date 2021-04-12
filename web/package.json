@@ -23,6 +23,7 @@
     "@vue/cli-service": "^3.0.0-beta.7",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
+    "typescript": "^2.5.3",
     "vue-template-compiler": "^2.5.13"
   },
   "postcss": {
