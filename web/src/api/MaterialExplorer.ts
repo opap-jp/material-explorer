@@ -28,7 +28,7 @@ export default class MaterialExplorer {
             images: () => request("/images")
                 .then(ok)
                 .then(r => r.json() as Promise<{ items: ThumbnailFile[] }>),
-            thumbnail: (fileId: string) =>  resolve("/thumbnail/" + fileId)
+            thumbnail: (fileId: String) =>  resolve("/thumbnail/" + fileId)
         };
     })();
 }
