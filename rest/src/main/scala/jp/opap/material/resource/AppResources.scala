@@ -3,6 +3,7 @@ package jp.opap.material.resource
 import java.util.UUID
 
 import akka.Done
+import akka.http.scaladsl.marshalling.sse.EventStreamMarshalling.toEventStream
 import akka.http.scaladsl.model.HttpMethods._
 import akka.http.scaladsl.model.sse.ServerSentEvent
 import akka.http.scaladsl.model.{HttpEntity, MediaTypes, StatusCodes}
@@ -61,12 +62,17 @@ class AppResources(val services: ServiceBundle, val eventEmitter: RepositoryData
       path("progress") {
         get {
           complete {
-            Source.actorRef[ServerSentEvent](32, OverflowStrategy.dropHead)
-              .mapMaterializedValue(actor => {
+            Source
+              .actorRef(
+                completionMatcher = { case Done => CompletionStrategy.immediately },
+                failureMatcher = PartialFunction.empty,
+                bufferSize = 100,
+                overflowStrategy = OverflowStrategy.dropHead,
+              ).watchTermination() { case (actorRef, _) =>
                 // TODO: イベントの送信
-                actor ! ServerSentEvent("negative", "negative")
-                actor ! Done
-              })
+                actorRef ! ServerSentEvent("negative", "negative")
+                actorRef ! Done
+              }
           }
         }
       }
