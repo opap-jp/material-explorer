@@ -3,6 +3,7 @@ package jp.opap.material.resource
 import java.util.UUID
 
 import akka.Done
+import akka.actor.ActorRef
 import akka.http.scaladsl.marshalling.sse.EventStreamMarshalling.toEventStream
 import akka.http.scaladsl.model.HttpMethods._
 import akka.http.scaladsl.model.sse.ServerSentEvent
@@ -19,6 +20,7 @@ import io.circe.syntax._
 import jp.opap.material.MaterialExplorer.ServiceBundle
 import jp.opap.material.dao.{MongoComponentDao, MongoRepositoryDao, MongoThumbnailDao}
 import jp.opap.material.facade.RepositoryDataEventEmitter
+import jp.opap.material.facade.RepositoryDataEventEmitter.{Progress, ProgressListener}
 import jp.opap.material.resource.AppResources.CORS_SETTINGS
 
 import scala.concurrent.ExecutionContext
@@ -62,21 +64,36 @@ class AppResources(val services: ServiceBundle, val eventEmitter: RepositoryData
       path("progress") {
         get {
           complete {
+            // TODO: テストが必要です
             Source
               .actorRef(
                 completionMatcher = { case Done => CompletionStrategy.immediately },
                 failureMatcher = PartialFunction.empty,
                 bufferSize = 100,
                 overflowStrategy = OverflowStrategy.dropHead,
-              ).watchTermination() { case (actorRef, _) =>
-                // TODO: イベントの送信
-                actorRef ! ServerSentEvent("negative", "negative")
-                actorRef ! Done
-              }
+              ).mapMaterializedValue(doProgress)
           }
         }
       }
     )
+  }
+
+  def doProgress(actorRef: ActorRef): Unit = {
+    if (eventEmitter.getRunning) {
+      eventEmitter.subscribe(new ProgressListener {
+        override def onUpdate(progress: Progress): Unit = {
+          actorRef ! ServerSentEvent(progress.asJson.toString)
+        }
+
+        override def onFinish(): Unit = {
+          actorRef ! ServerSentEvent("close", "close")
+          actorRef ! Done
+        }
+      })
+    } else {
+      actorRef ! ServerSentEvent("negative", "negative")
+      actorRef ! Done
+    }
   }
 }
 

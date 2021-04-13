@@ -37,8 +37,8 @@ class RepositoryDataEventEmitter() {
 
 object RepositoryDataEventEmitter {
   trait ProgressListener {
-    def onUpdate(progress: Progress)
-    def onFinish()
+    def onUpdate(progress: Progress): Unit
+    def onFinish(): Unit
   }
 
   case class Progress(@BeanProperty current: Int, @BeanProperty max: Int, @BeanProperty processing: String, @BeanProperty name: String)
