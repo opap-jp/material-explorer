@@ -3,12 +3,11 @@ version: "2"
 services:
   # REST サーバー（開発用）
   rest:
-    command: java -jar material-explorer.jar server config.test.yaml
     build:
       # https://docs.docker.com/engine/reference/commandline/build/#extended-description
       context: rest
     environment:
-      DATABASE_HOST: localhost
+      DATABASE_HOST: db
       DATABASE_NAME: material_explorer
       IMAGEMAGICK_HOST: im
       MANIFEST: ./manifest.yaml

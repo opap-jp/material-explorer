@@ -5,7 +5,7 @@ import java.util.UUID
 
 import jp.opap.data.yaml.Yaml
 import jp.opap.material.MaterialExplorer
-import jp.opap.material.MaterialExplorer.{ServiceBundle, requireValue}
+import jp.opap.material.MaterialExplorer.requireValue
 import jp.opap.material.facade.MediaConverter.ImageConverter
 import jp.opap.material.facade.{GitLabRepositoryLoaderFactory, RepositoryCollectionFacade, RepositoryDataEventEmitter}
 import jp.opap.material.model.{Manifest, RepositoryConfig}

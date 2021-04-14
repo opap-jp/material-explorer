@@ -1,17 +1,12 @@
 package jp.opap.material
 
-import java.io.File
-import java.util.UUID
-
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
-import jp.opap.data.yaml.Yaml
 import jp.opap.material.dao._
-import jp.opap.material.facade.MediaConverter.{ImageConverter, RestResize}
-import jp.opap.material.facade.{GitLabRepositoryLoaderFactory, RepositoryCollectionFacade, RepositoryDataEventEmitter}
-import jp.opap.material.model.{Manifest, RepositoryConfig}
+import jp.opap.material.facade.MediaConverter.RestResize
+import jp.opap.material.facade.RepositoryDataEventEmitter
 import jp.opap.material.resource.AppResources
 import org.slf4j.{Logger, LoggerFactory}
 

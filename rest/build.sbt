@@ -9,11 +9,6 @@ javacOptions ++= Seq("-encoding", "UTF-8")
 val akkaHttpVersion = "10.1.12"
 val circeVersion = "0.13.0"
 
-val workaround: Unit = {
-  sys.props += "packaging.type" -> "jar"
-  ()
-}
-
 libraryDependencies ++= Seq(
   "org.gitlab4j" % "gitlab4j-api" % "4.15.7",
 
