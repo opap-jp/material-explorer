@@ -33,41 +33,27 @@ object MaterialExplorer {
   }
 
   def run()(implicit actorSystem: ActorSystem, executor: ExecutionContext): Unit = {
-    val serviceBundle = {
-      val dbClient = new MongoClient(requireValue("DATABASE_HOST"))
-      val db = dbClient.getDatabase(requireValue("DATABASE_NAME"))
-
-      val repositoryDao = new MongoRepositoryDao(db)
-      val componentDao = new MongoComponentDao(db)
-      val thumbnailDao = new MongoThumbnailDao(db)
-      val cacheDao = new GridFsCacheDao(db)
-      val resize = new RestResize(requireValue("IMAGEMAGICK_HOST"))
-
-      new ServiceBundle(db, repositoryDao, componentDao, thumbnailDao, cacheDao, resize)
-    }
+    val serviceBundle = resolveServiceBundle()
     val repositoryEventEmitter = new RepositoryDataEventEmitter()
 
     val resources = new AppResources(serviceBundle, repositoryEventEmitter)
-
-    updateRepositoryData(serviceBundle, repositoryEventEmitter)
-      .start()
 
     Http().bindAndHandle(resources.route, "0.0.0.0", 8080)
     logger.info("Started.")
     Await.result(actorSystem.whenTerminated, Duration.Inf)
   }
 
-  def updateRepositoryData(services: ServiceBundle, eventEmitter: RepositoryDataEventEmitter): Thread = {
-    val manifest = Manifest.fromYaml(Yaml.parse(new File(requireValue("MANIFEST"))), UUID.randomUUID)
-    val repositories = RepositoryConfig.fromYaml(Yaml.parse( new File(requireValue("REPOSITORIES"))))
+  def resolveServiceBundle(): ServiceBundle = {
+    val dbClient = new MongoClient(requireValue("DATABASE_HOST"))
+    val db = dbClient.getDatabase(requireValue("DATABASE_NAME"))
 
-    val context = RepositoryCollectionFacade.Context(manifest, repositories)
-    val converters =Seq(new ImageConverter(services.resize))
-    val loaders = Seq(new GitLabRepositoryLoaderFactory(requireValue("GITLAB_PERSONAL_ACCESS_TOKEN")))
+    val repositoryDao = new MongoRepositoryDao(db)
+    val componentDao = new MongoComponentDao(db)
+    val thumbnailDao = new MongoThumbnailDao(db)
+    val cacheDao = new GridFsCacheDao(db)
+    val resize = new RestResize(requireValue("IMAGEMAGICK_HOST"))
 
-    val facade = new RepositoryCollectionFacade(context, services, converters, loaders, eventEmitter)
-
-    new Thread(()  => facade.updateRepositories())
+    new ServiceBundle(db, repositoryDao, componentDao, thumbnailDao, cacheDao, resize)
   }
 
   def requireValue(name: String): String = {
@@ -76,6 +62,7 @@ object MaterialExplorer {
       case null => throw new IndexOutOfBoundsException(s"Environment variable ${name} is not set.")
     }
   }
+
   class ServiceBundle(
     val db: MongoDatabase,
     val repositoryDao: MongoRepositoryDao,

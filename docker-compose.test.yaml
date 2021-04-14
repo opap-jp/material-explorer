@@ -7,6 +7,13 @@ services:
     build:
       # https://docs.docker.com/engine/reference/commandline/build/#extended-description
       context: rest
+    environment:
+      DATABASE_HOST: localhost
+      DATABASE_NAME: material_explorer
+      IMAGEMAGICK_HOST: im
+      MANIFEST: ./manifest.yaml
+      REPOSITORIES: ./repositories.yaml
+      # GITLAB_PERSONAL_ACCESS_TOKEN:
     ports:
       - 8080:8080
       - 8081:8081

@@ -35,7 +35,7 @@ class AppResources(val services: ServiceBundle, val eventEmitter: RepositoryData
 
   val route: Route = cors(CORS_SETTINGS) {
     concat(
-      path("repositories") {
+      pathPrefix("repositories") {
         get {
           val items = this.projectDao.find()
           val data = Map("items" -> items)
@@ -74,7 +74,7 @@ class AppResources(val services: ServiceBundle, val eventEmitter: RepositoryData
               ).mapMaterializedValue(doProgress)
           }
         }
-      }
+      },
     )
   }
 
