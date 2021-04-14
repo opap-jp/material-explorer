@@ -17,7 +17,7 @@ COPY conf/default.conf /etc/nginx/conf.d
 
 # アプリケーションのソースをコピーし、ビルドします
 RUN mkdir /tmp/material-explorer
-COPY package.json /tmp/material-explorer
+COPY package.json yarn.lock /tmp/material-explorer/
 WORKDIR /tmp/material-explorer
 RUN yarn
 COPY . /tmp/material-explorer
