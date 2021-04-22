@@ -1,8 +1,6 @@
-FROM python:3.4
+FROM python:3.8-alpine
 
-# パッケージのインストール
-RUN apt-get update \
-    && apt-get install -y imagemagick ghostscript
+RUN apk add --no-cache imagemagick ghostscript
 
 RUN mkdir /usr/src/im
 WORKDIR /usr/src/im
@@ -13,4 +11,4 @@ RUN pip install --upgrade pip \
 COPY . .
 RUN chmod 755 cmd.sh test.sh
 
-CMD ./cmd.sh
+CMD ["sh", "cmd.sh"]
