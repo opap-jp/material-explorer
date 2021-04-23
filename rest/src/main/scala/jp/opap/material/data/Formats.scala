@@ -1,6 +1,6 @@
 package jp.opap.material.data
 
-import java.time.{ LocalDateTime, ZoneId}
+import java.time.{LocalDateTime, ZoneId}
 import java.util.Date
 
 object Formats {

@@ -35,4 +35,4 @@ RUN mv target/material-explorer.jar /opt/material-explorer/
 
 WORKDIR /opt/material-explorer
 
-CMD ["java", "-jar", "material-explorer.jar", "server", "config.yaml"]
+CMD ["java", "--class-path", "material-explorer.jar", "jp.opap.material.MaterialExplorer"]

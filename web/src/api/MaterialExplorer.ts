@@ -11,9 +11,9 @@ export default class MaterialExplorer {
     static request: (path: string) => Promise<Response> = (path) => fetch(MaterialExplorer.resolve(path));
 
     public static readonly resources = (function() {
-        let resolve = MaterialExplorer.resolve;
-        let request = MaterialExplorer.request;
-        let ok: (r: Response) => Promise<Response> = r => r.ok ? Promise.resolve(r) : Promise.reject(r);
+        const resolve = MaterialExplorer.resolve;
+        const request = MaterialExplorer.request;
+        const ok: (r: Response) => Promise<Response> = r => r.ok ? Promise.resolve(r) : Promise.reject(r);
 
         return {
             person: () => request("/person")

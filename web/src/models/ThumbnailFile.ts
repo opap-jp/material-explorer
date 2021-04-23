@@ -1,14 +1,14 @@
 export default interface ThumbnailFile {
     file: {
-        id: String,
-        repositoryId: String,
-        parentId: String,
-        name: String,
-        path: String,
-        blobId: String,
+        id: string,
+        repositoryId: string,
+        parentId: string,
+        name: string,
+        path: string,
+        blobId: string,
     },
     thumbnail: {
-        id: String,
+        id: string,
         width: number,
         height: number,
     }

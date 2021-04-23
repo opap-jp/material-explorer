@@ -72,7 +72,7 @@ import Dictionaries from '@/util/Dictionaries';
 export default class Home extends Vue {
   public thumbs: ThumbnailFile[] | null = null;
   public repositories: Repository[] | null = null;
-  public isError: boolean = false;
+  public isError = false;
 
   get repositoryDictionary(): { [key: string] : Repository } {
     if (this.repositories !== null) {

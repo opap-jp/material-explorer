@@ -2,7 +2,6 @@ package jp.opap.material.data
 
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
-import scala.collection.immutable.TreeMap
 
 object Collections {
   /**
