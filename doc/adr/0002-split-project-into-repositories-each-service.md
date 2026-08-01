@@ -4,7 +4,7 @@
 
 ## 状態
 
-Accepted
+Superseded by [4. サービスごとのリポジトリを単一のリポジトリに戻す](0004-merge-service-repositories-into-monorepo.md)
 
 ## 前提
 
