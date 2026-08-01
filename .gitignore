@@ -4,3 +4,12 @@ Thumbs.db
 
 # temp files
 /temp
+
+# 新スタック
+node_modules/
+/data
+/core/dist
+/backend/dist
+/batch/dist
+/frontend/build
+/frontend/.react-router

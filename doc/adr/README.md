@@ -4,3 +4,4 @@
 * [2. プロジェクトをサービスごとのリポジトリに分割する](0002-split-project-into-repositories-each-service.md)
 * [3. ファイルキャッシュの ID としてパスでなくハッシュ値を使用する](0003-use-object-hash-as-file-cache-id-instead-of-path.md)
 * [4. サービスごとのリポジトリを単一のリポジトリに戻す](0004-merge-service-repositories-into-monorepo.md)
+* [5. レガシーなテクノロジースタックを刷新する](0005-renew-legacy-technology-stack.md)

@@ -1,19 +1,9 @@
 # 開発用 Docker 構成
-# db のみコンテナとして起動します。web, rest は npm と JRE で起動してください。
-version: "2"
+# im のみコンテナとして起動します。backend, frontend, batch はホストの Node.js で起動してください。
 services:
-  # データベース
-  db:
-    image: mongo:3.4.9
-    ports:
-      - 27017:27017
-    volumes:
-      - data-volume:/data/db
   # ImageMagick
   im:
     build:
-      context: https://github.com/opap-jp/material-explorer-im.git#develop
+      context: im
     ports:
       - 9090:9090
-volumes:
-  data-volume:

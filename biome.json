@@ -1,0 +1,5 @@
+{
+  "files": {
+    "includes": ["core/**", "backend/**", "frontend/**", "batch/**"]
+  }
+}
