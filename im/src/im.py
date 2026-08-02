@@ -51,7 +51,7 @@ def resize():
 
     try:
         (width, height, data) = validated_data()
-        command = 'convert - -resize {0}x{1} png:-'.format(width, height)
+        command = 'magick - -resize {0}x{1} png:-'.format(width, height)
         with subprocess.Popen(command.split(' '), stdin=subprocess.PIPE, stdout=subprocess.PIPE) as process:
             process.stdin.write(data)
             process.stdin.close()
